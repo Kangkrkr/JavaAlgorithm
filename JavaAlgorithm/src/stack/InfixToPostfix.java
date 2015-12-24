@@ -7,7 +7,10 @@ public class InfixToPostfix {
 
 	public static void main(String[] args) {
 
-		String infix = "1*2-(3+4)+5";
+		//      인픽스            포스트픽스
+		// (2-1)*3+(4-2)/4  -->  21-3*42-4/+
+		//   1*2-(3+4)+5    -->   12*34+-5+
+		String infix = "(2-1)*3+(4-2)/4";
 		postfix(infix);
 	}
 	
