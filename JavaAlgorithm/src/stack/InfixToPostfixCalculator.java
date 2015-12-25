@@ -17,15 +17,16 @@ public class InfixToPostfixCalculator {
 		
 		Stack stack = new Stack();
 		
+		// 1. 입력받은 수식의 처음부터 끝까지 검사한다.
 		for(int i=0; i<postfix.length(); i++){
 			
 			char c = postfix.charAt(i);
 			
-			// 숫자라면 스택에 푸쉬한다.
+			// 2. 숫자라면 스택에 푸쉬한다.
 			if(InfixToPostfix.isNumber(c)){
 				stack.push(c);
 			}
-			// 연산자라면 먼저, 단항연산자인지 이항연산자인지 구분한다.
+			// 3. 연산자라면 먼저, 단항연산자인지 이항연산자인지 구분한다.
 			// 단항연산자라면 스택에서 하나를 팝,
 			// 이항연산자라면 스택에서 두개를 팝한다.
 			// 먼저 스택에서 팝된 피연산자가 이항연산자 연산시의 두번째 피연산자가 된다.
@@ -55,12 +56,12 @@ public class InfixToPostfixCalculator {
 					break;
 				}
 				
-				// 계산한 결과를 스택에 푸쉬한다.
+				// 4. 계산한 결과를 스택에 푸쉬한다.
 				stack.push(result);
 			}
 		}
 		
-		// 루프문이 종료되고 난 후에는 스택에 최종결과 값이 하나 저장되어있다.
+		// 5. 루프문이 종료되고 난 후에는 스택에 최종결과 값이 하나 저장되어있다.
 		// 그 결과값을 팝하여 결과를 보여준다.
 		return Integer.parseInt(stack.pop()+"");
 	}
