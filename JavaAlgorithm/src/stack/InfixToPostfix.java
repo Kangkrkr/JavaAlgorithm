@@ -22,17 +22,17 @@ public class InfixToPostfix {
 		// 1. 연산자 및 '(' 를 push, pop 할 스택을 만든다.
 		Stack<Character> stack = new Stack<Character>();
 		
-		// 입력받은 문자열에서 각각의 글자 단위로 검사한다.
+		// 2. 입력받은 문자열에서 각각의 글자 단위로 검사한다.
 		for(int i=0; i<infix.length(); i++){
 
 			// 문자열에서 한글자 가져오기.
 			char c = infix.charAt(i);
 			
-			// 숫자(피연산자)를 만난다면 그냥 출력한다.
+			// 3. 숫자(피연산자)를 만난다면 그냥 출력한다.
 			if(isNumber(c)){
 				System.out.print(c);
 			}
-			// 오른쪽(닫는) 괄호가 나오면, 
+			// 4. 오른쪽(닫는) 괄호가 나오면, 
 			// 스택이 비어있지 않는 조건한에서 왼쪽(여는) 괄호를 만날떄까지 팝하며 출력한다.
 			else if(c == ')'){
 				while(!stack.isEmpty() && stack.peek() != '('){
@@ -43,7 +43,7 @@ public class InfixToPostfix {
 				// '(' 은 출력하지 않고 버린다.(팝을 한다.)
 				stack.pop();
 			}
-			// 그외, 연산자를 만나거나 오른쪽(여는) 괄호를 만났을 경우.
+			// 5. 그외, 왼쪽(여는) 괄호를 만났을 경우나 연산자를 만나는 경우 .
 			else{
 				// 여는 괄호를 만나면 스택에 푸쉬한다.
 				if(c == '('){
@@ -64,7 +64,7 @@ public class InfixToPostfix {
 			}
 		}
 		
-		// 순환문이 끝나고 나면, 스택이 빌때까지 팝을 하며 출력한다.
+		// 6. 순환문이 끝나고 나면, 스택이 빌때까지 팝을 하며 출력한다.
 		while(!stack.isEmpty()){
 			System.out.print(stack.pop());
 		}
