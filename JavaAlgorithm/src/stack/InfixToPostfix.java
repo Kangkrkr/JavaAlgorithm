@@ -11,16 +11,17 @@ public class InfixToPostfix {
 		// (2-1)*3+(4-2)/4  -->  21-3*42-4/+
 		//   1*2-(3+4)+5    -->   12*34+-5+
 		String infix = "(2-1)*3+(4-2)/4";
-		postfix(infix);
+		System.out.println(postfix(infix));
 	}
 	
-	public static void postfix(String infix){
+	public static String postfix(String infix){
 		
 		// A * B - (C + D) + E : infix
 		// AB*CD+-E+		   : postfix
 		
 		// 1. 연산자 및 '(' 를 push, pop 할 스택을 만든다.
 		Stack<Character> stack = new Stack<Character>();
+		StringBuilder sb = new StringBuilder();
 		
 		// 2. 입력받은 문자열에서 각각의 글자 단위로 검사한다.
 		for(int i=0; i<infix.length(); i++){
@@ -30,13 +31,13 @@ public class InfixToPostfix {
 			
 			// 3. 숫자(피연산자)를 만난다면 그냥 출력한다.
 			if(isNumber(c)){
-				System.out.print(c);
+				sb.append(c);
 			}
 			// 4. 오른쪽(닫는) 괄호가 나오면, 
 			// 스택이 비어있지 않는 조건한에서 왼쪽(여는) 괄호를 만날떄까지 팝하며 출력한다.
 			else if(c == ')'){
 				while(!stack.isEmpty() && stack.peek() != '('){
-					System.out.print(stack.pop());
+					sb.append(stack.pop());
 				}
 				
 				// 위의 while문은 '(' 전까지 팝되었으므로,
@@ -55,7 +56,7 @@ public class InfixToPostfix {
 				// 현재 자신보다 우선순위가 높은 연산자를 팝하며 출력한다.
 				if(isOperator(c)){
 					while(!stack.isEmpty() && (getPrec(c) <= getPrec(stack.peek()))){
-						System.out.print(stack.pop());
+						sb.append(stack.pop());
 					}
 					
 					// 그리고나서 자신을 스택에 푸쉬한다.
@@ -66,8 +67,10 @@ public class InfixToPostfix {
 		
 		// 6. 순환문이 끝나고 나면, 스택이 빌때까지 팝을 하며 출력한다.
 		while(!stack.isEmpty()){
-			System.out.print(stack.pop());
+			sb.append(stack.pop());
 		}
+		
+		return sb.toString();
 	}
 	
 	public static boolean isNumber(char c){
