@@ -92,7 +92,7 @@ public class MyBitmask {
 	// 비트 연산으로 두 수를 스왑하는 메소드이다.
 	public static void bitSwap(int i, int j){
 		
-		i = i^j;			// 1111
+		i ^= j;			// 1111
 		j ^= i;
 		i ^= j;
 		
