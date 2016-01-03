@@ -1,6 +1,6 @@
 package recursive;
 
-public class FindBinaryInBacktracking {
+public class FindBinaryByBacktracking {
 
 	private static int A[] = new int[3];
 	

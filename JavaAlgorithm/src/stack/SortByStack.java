@@ -3,7 +3,7 @@ package stack;
 import java.util.Random;
 import java.util.Stack;
 
-public class SortASCInStack {
+public class SortByStack {
 
 	public static void main(String[] args) {
 		

@@ -2,7 +2,7 @@ package stack;
 
 import java.util.Stack;
 
-public class CircularStringInStack {
+public class CircularStringByStack {
 
 	public static void main(String[] args) {
 

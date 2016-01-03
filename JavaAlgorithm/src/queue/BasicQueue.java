@@ -43,15 +43,19 @@ public class BasicQueue implements Queue{
 	@Override
 	public int getSize() {
 		// ?? 맞는지 모르겠음 ..
-		return ((capacity-front+rear)%capacity)+1;
+		return ((capacity-front+rear+1)%capacity);
+	}
+	
+	public int get(int index){
+		return buffer[index];
 	}
 	
 	public int getFront(){
-		return front;
+		return front % capacity;
 	}
 	
 	public int getRear(){
-		return rear;
+		return rear % capacity;
 	}
 
 	@Override
@@ -75,20 +79,30 @@ public class BasicQueue implements Queue{
 		}
 		
 		// (++front)%capacity 의 위치에 아이템 반환 및 제거.
-		return buffer[(++front)%capacity];
+		int item = buffer[(++front)%capacity];
+		buffer[(front)%capacity] = 0;
+		return item;
 	}
 	
 	public static void main(String[] args) {
 
-		BasicQueue queue = new BasicQueue(8);
-		for(int i=1; i<=8; i++){
+		BasicQueue queue = new BasicQueue(10);
+		
+		/* front 가 rear 보다 커지는 경우를 시뮬레이션 해본다 */
+		
+		for(int i=1; i<=12; i++){
 			queue.enqueue(i);
 		}
+		// front = -1 , rear = (11 % capacity) = 1;
+		System.out.println("front : "+queue.getFront()+" , rear : "+queue.getRear());
 		
-		while(!queue.isEmpty()){
-			System.out.println(queue.dequeue());
-			System.out.println("front : "+queue.getFront()+" , rear : "+queue.getRear());
+		for(int i=1; i<=3; i++){
+			queue.dequeue();
 		}
+		//  front = 2 , rear = 1;
+		System.out.println("front : "+queue.getFront()+" , rear : "+queue.getRear());
+		
+		System.out.println("현재 큐의 사이즈 : "+queue.getSize());
 	}
 
 }
