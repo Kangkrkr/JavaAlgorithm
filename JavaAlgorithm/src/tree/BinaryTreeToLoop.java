@@ -1,9 +1,11 @@
 package tree;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 
 
+// ※ 참고 - Queue 로도 가능하다 !
 public class BinaryTreeToLoop {
 
 	public static void main(String[] args) {
@@ -23,6 +25,9 @@ public class BinaryTreeToLoop {
 		System.out.println();
 		
 		postOrder(root);
+		System.out.println();
+		
+		levelOrder(root);
 		System.out.println();
 	}
 
@@ -127,6 +132,32 @@ public class BinaryTreeToLoop {
 				else{
 					root = null;
 				}
+			}
+		}
+	}
+	
+	
+	// LEVEL
+	//         1
+	//      2     3
+	//    4   5  6   7
+	public static void levelOrder(BinaryTreeNode root){
+		
+		LinkedList<BinaryTreeNode> queue = new LinkedList<BinaryTreeNode>();
+		BinaryTreeNode temp = null;
+		
+		queue.add(root);
+		
+		while(!queue.isEmpty()){
+			temp = queue.remove();
+			System.out.print(temp.getData()+" ");
+			
+			if(temp.getLeft() != null){
+				queue.add(temp.getLeft());
+			}
+			
+			if(temp.getRight() != null){
+				queue.add(temp.getRight());
 			}
 		}
 		
